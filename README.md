@@ -1,6 +1,6 @@
 ### Airbnb prices analysis in European cities  
 
-Pet-project where I analyze the Airbnb prices in 10 European cities and the determinants of price. I used a dataset from [Kaggle](https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities/data)  
+Pet-project where I analyze the Airbnb prices in 10 European cities and the determinants of price. I used a dataset from [Kaggle](https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities/data).  
 
 Ціллю мого PET-проекту є аналіз цін на Airbnb у 10 містах європи в будні і вихідні дні, а також визначення факторів, які впливають на рівень цін.  
 
