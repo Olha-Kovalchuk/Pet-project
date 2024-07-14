@@ -26,10 +26,8 @@ def merge_data(cities_names):
         weekdays = pd.read_csv(f'{city}_weekdays.csv') 
         weekends = pd.read_csv(f'{city}_weekends.csv') 
         
-        merged_city = pd.merge(weekdays, weekends, how='outer', on=[
-            'room_type', 'room_shared', 'room_private', 'person_capacity', 'host_is_superhost', 
-            'multi', 'biz', 'cleanliness_rating', 'guest_satisfaction_overall', 
-            'bedrooms', 'lng', 'lat'])
+        merged_city = pd.merge(weekdays, weekends, how='outer', on=['room_type', 'room_shared', 'room_private', 'person_capacity', 'host_is_superhost', 
+            'multi', 'biz', 'cleanliness_rating', 'guest_satisfaction_overall', 'bedrooms', 'lng', 'lat'])
         merged_city['city'] = city
         all_data.append(merged_city)
     
