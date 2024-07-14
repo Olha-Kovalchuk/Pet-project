@@ -26,8 +26,9 @@ def merge_data(cities_names):
         weekdays = pd.read_csv(f'{city}_weekdays.csv') 
         weekends = pd.read_csv(f'{city}_weekends.csv') 
         
-        merged_city = pd.merge(weekdays, weekends, how='outer', on=['room_type', 'room_shared', 'room_private', 'person_capacity', 'host_is_superhost', 
-            'multi', 'biz', 'cleanliness_rating', 'guest_satisfaction_overall', 'bedrooms', 'lng', 'lat'])
+        merged_city = pd.merge(weekdays, weekends, how='outer', on=['room_type', 'room_shared', 'room_private',
+        'person_capacity', 'host_is_superhost', 'multi', 'biz', 'cleanliness_rating', 'guest_satisfaction_overall',
+        'bedrooms', 'lng', 'lat'])
         merged_city['city'] = city
         all_data.append(merged_city)
     
@@ -36,7 +37,26 @@ def merge_data(cities_names):
 
 cities_names = ['amsterdam', 'athens', 'barcelona', 'berlin', 'budapest', 'lisbon', 'london', 'paris', 'rome', 'vienna']
 cities_data = merge_data(cities_names)
-cities_data
+```
+
+Оскільки у нас була проблема з тим, що через різні округлення у нас не збігілись колонки по відстані до центру і метро, то замість 2 стовпців робимо 1 спільний:
+
+```
+import numpy as np
+cities_data['dist_x'] = cities_data['dist_x'].replace('NaN', np.nan)
+cities_data['dist_y'] = cities_data['dist_y'].replace('NaN', np.nan)
+
+cities_data['distance'] = cities_data['dist_x'].fillna(cities_data['dist_y'])
+
+cities_data['metro_dist_x'] = cities_data['metro_dist_x'].replace('NaN', np.nan)
+cities_data['metro_dist_y'] = cities_data['metro_dist_y'].replace('NaN', np.nan)
+
+cities_data['metro_distance'] = cities_data['metro_dist_x'].fillna(cities_data['metro_dist_y'])
+```
+
+
+```
+
 ```
 
 
