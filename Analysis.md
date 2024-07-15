@@ -130,6 +130,8 @@ fig.show()
 
 Отримаємо таку картинку:
 
+/assets/images/3_Correlation.png
+
 
 
 
