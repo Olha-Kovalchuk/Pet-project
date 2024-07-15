@@ -130,7 +130,7 @@ fig.show()
 
 Отримаємо таку картинку:
 
-/3_Correlation.png
+!3_Correlation.png
 
 
 
