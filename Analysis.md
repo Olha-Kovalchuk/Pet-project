@@ -54,9 +54,31 @@ cities_data['metro_dist_y'] = cities_data['metro_dist_y'].replace('NaN', np.nan)
 cities_data['metro_distance'] = cities_data['metro_dist_x'].fillna(cities_data['metro_dist_y'])
 ```
 
+Видаляємо зайві стовпці з таблиці:
 
 ```
+cities_data  = cities_data.drop(["Unnamed: 0_x", "Unnamed: 0_y", "dist_x", "metro_dist_x", "dist_y", "metro_dist_y"], axis=1)
+```
+
+Також, щоб прискорити процес обробки даних, видаляємо стовпці, які не плануємо використовувати в даному дослідженні: attr_index, attr_index_norm, rest_index та rest_index_norm.
 
 ```
+cities_data  = cities_data.drop(["attr_index_y", "attr_index_norm_y", " rest_index_y", "rest_index_norm_y", "attr_index_x", "attr_index_norm_x", " rest_index_x", "rest_index_norm_x"], axis=1)
+```
+
+Перейменовуємо деякі стовпці з таблиці, щоб було зрозуміло, які стовпці відносятьмся до інформації в цілому по локації, тільки по будням і тільки по вихідним.
+Для будніх додамо в кінці назви "_wd", для вихідних "_we".
+
+```
+cities_data.columns = cities_data.columns.str.replace("_x", "_wd")
+cities_data.columns = cities_data.columns.str.replace("_y", "_we")
+```
+
+Переглядаємо чи коректні типи даних в наших таблицях:
+
+```
+cities_data.info()
+```
+
 
 
