@@ -148,7 +148,9 @@ fig.update_layout(title = "Correlation with Price by Cities on weekdays")
 fig.show()
 ```
 
-Отримаємо таку картинку:
-![Image alt](4_Correlation with Price by Cities on weekdays.png)
+Отримаємо таку картинку:  
+![Image alt](4_Correlation with Price by Cities on weekdays.png)  
+
+
 
 
