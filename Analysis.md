@@ -130,7 +130,7 @@ fig.show()
 
 Отримаємо таку картинку:
 
-/Pet-project/3_Correlation.png
+/3_Correlation.png
 
 
 
