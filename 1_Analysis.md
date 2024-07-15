@@ -119,11 +119,11 @@ correl = cities_data[factors].corr()
 
 Результатом буде таблиця, але оскільки вона складна для сприйняття, то ми зробимо візуалізацію з використанням кольорів, щоб полегшити срийняття інформації:
 
+```
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
-```
 fig = px.imshow(correl, zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'],
 title="Correlation", width=1000, height=1000, text_auto ='.2f')
 fig.show()
