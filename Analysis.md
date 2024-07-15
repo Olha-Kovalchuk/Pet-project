@@ -150,7 +150,11 @@ fig.show()
 
 Отримаємо таку картинку:  
 
-![Image alt](4_Correlation with Price by Cities on weekdays.png)
+![Image alt](4_Correlation_with_Price_by_Cties_on_weekdays.png)
+
+![Image alt](4_Coreelation with Price by Cities on weekdays.png)
+
+
 
 
 ![Image alt](5_Correlation with Price by Cities on weekends.png)
