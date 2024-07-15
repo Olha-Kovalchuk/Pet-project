@@ -132,7 +132,23 @@ fig.show()
 
 ![Image alt](3_Correlation.png)
 
+Далі подивимось на корелцію між ціною в будні і різними факторами:
 
+```
+m = pd.DataFrame()
 
+for city in cities_data.city.unique():
+    file = (cities_data [cities_data.city == city][factors].corrwith(cities_data [cities_data.city == city]['realSum_wd']))
+    m = pd.concat([m,file], axis = 1)
+
+m.columns = cities_data.city.unique()
+
+fig = px.imshow(m[1:], zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'], width=1000, height=1000, text_auto = '.2f')
+fig.update_layout(title = "Correlation with Price by Cities on weekdays")
+fig.show()
+```
+
+Отримаємо таку картинку:
+![Image alt](4_Correlation withPrice by Cities on weekdays.png)
 
 
