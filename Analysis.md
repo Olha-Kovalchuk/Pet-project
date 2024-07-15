@@ -15,7 +15,7 @@
 * **Python:** Планується використати Python разом з бібліотеками pandas, Matplotlib та Seaborn для більш детального аналізу даних і иявлення кореляціії між ціною та факторами, що потенційно можуть на неї впливати.
 * **Tableau:** Для створення візуалізацій та дашбордів для кращого візуального представлення результатів.
 
-### **Збір та Очищення Даних**  
+### **Збір та очищення даних**  
 Для аналізу було вибрано дат-сет з [Kaggle](https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities/data) В дата-сеті було 20 таблиць - по 2 таблиці на кожне місто - з цінами в будні і вихідні дня. Спочатку я дослідила вміст таблиць і стовпчиків у  Google BigQuery за допомогою SQL-запитів. Оскільки в даних таблицях не було ключів і в Google BigQuery не підтримує складені ключі, то було прийнято рішення використати Python для обробки даних. В Python за допомогою складеного ключа я заватажила і об'єднала таблиці наступним чином:  
 
 ```
@@ -63,7 +63,8 @@ cities_data  = cities_data.drop(["Unnamed: 0_x", "Unnamed: 0_y", "dist_x", "metr
 Також, щоб прискорити процес обробки даних, видаляємо стовпці, які не плануємо використовувати в даному дослідженні: attr_index, attr_index_norm, rest_index та rest_index_norm.
 
 ```
-cities_data  = cities_data.drop(["attr_index_y", "attr_index_norm_y", " rest_index_y", "rest_index_norm_y", "attr_index_x", "attr_index_norm_x", " rest_index_x", "rest_index_norm_x"], axis=1)
+cities_data  = cities_data.drop(["attr_index_y", "attr_index_norm_y", " rest_index_y", "rest_index_norm_y", "attr_index_x",
+"attr_index_norm_x", " rest_index_x", "rest_index_norm_x"], axis=1)
 ```
 
 Перейменовуємо деякі стовпці з таблиці, щоб було зрозуміло, які стовпці відносятьмся до інформації в цілому по локації, тільки по будням і тільки по вихідним.
@@ -79,6 +80,55 @@ cities_data.columns = cities_data.columns.str.replace("_y", "_we")
 ```
 cities_data.info()
 ```
+
+Замість окремих булевих стовпчиків, зробимо стовпчки з варіантами типу бізнесу по кількості помешка і стовпець, в якому буде вказано чи локація доступна лише в будні, лише в вихідні чи в будь-які дні:
+
+```
+cities_data['biz_type'] = cities_data.apply(    
+    lambda row: 'multi' if row['multi'] == 1 else ('biz' if row['biz'] == 1 else 'one'), axis=1)
+
+cities_data['booking_days'] = cities_data.apply(    
+    lambda row: 'weekends only' if row['realSum_wd'] == 'NaN' else ('weekdays only' if row['realSum_we'] == 'NaN' else 'any day'), axis=1)
+```
+
+Зробимо агрегацію даних - подивимось скільки яких типів помешкань серед наших локацій:
+
+```
+room_types = cities_data.groupby('room_type')['room_type'].count()
+```
+
+Як можна побачити, що стовпці  room_shared і  room_private по суті дублюють уже зазначену в room_type інформацію. Тому видаляємо ці стовпці з таблиці і виведемо таблицю, щоб побачити результат:
+
+```
+cities_data  = cities_data.drop(["multi", "biz", "room_shared", "room_private"], axis=1)
+cities_data
+```
+
+Як, бачимо ми отримали таблицю з 15 колонками і 33 312 рядочками, і ці дані надалі знадобляться нам в аналізі.
+
+### **Аналіз даних**  
+Аналіз даних почнемо з кореляції, яку також зробимо в Python.  
+Спочатку проаналізуємо кореляцію між різними факторами. Для цього виберемо, фактори, які будемо включати до нашого кореляційного аналізу і потім зробимо безпосередньо кореляційний аналіз:
+
+```
+factors=['realSum_wd','person_capacity','cleanliness_rating','guest_satisfaction_overall','bedrooms','distance','metro_distance','lng','lat', 'realSum_we']
+correl = cities_data[factors].corr()
+```
+
+Результатом буде таблиця, але оскільки вона складна для сприйняття, то ми зробимо візуалізацію з використанням кольорів, щоб полегшити срийняття інформації:
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+```
+fig = px.imshow(correl, zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'], title="Correlation", width=1000, height=1000, text_auto ='.2f')
+fig.show()
+```
+
+Отримаємо таку картинку:
+
+
 
 
 
