@@ -149,7 +149,8 @@ for city in cities_data.city.unique():
 
 m.columns = cities_data.city.unique()
 
-fig = px.imshow(m[1:], zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'], width=1000, height=1000, text_auto = '.2f')
+fig = px.imshow(m[1:], zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'], width=1000,
+height=1000, text_auto = '.2f')
 fig.update_layout(title = "Correlation with Price by Cities on weekdays")
 fig.show()
 ```
@@ -178,7 +179,8 @@ for city in cities_data.city.unique():
 
 m1.columns = cities_data.city.unique()
 
-fig = px.imshow(m1, zmin=-1, zmax=1, color_continuous_scale=['#DD0000','#FFFFFF','#0000DD'], width=1000, height=1000, text_auto='.2f')
+fig = px.imshow(m1, zmin=-1, zmax=1, color_continuous_scale=['#DD0000','#FFFFFF','#0000DD'], width=1000,
+height=1000, text_auto='.2f')
 fig.update_layout(title="Correlation with Price by Cities on weekends")
 plt.savefig('Correlation with Price by Cities on weekends.png')
 fig.show()
