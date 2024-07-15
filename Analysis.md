@@ -88,7 +88,8 @@ cities_data['biz_type'] = cities_data.apply(
     lambda row: 'multi' if row['multi'] == 1 else ('biz' if row['biz'] == 1 else 'one'), axis=1)
 
 cities_data['booking_days'] = cities_data.apply(    
-    lambda row: 'weekends only' if pd.isna(row['realSum_wd']) else ('weekdays only' if pd.isna(row['realSum_we']) else 'any day'), axis=1)
+    lambda row: 'weekends only' if pd.isna(row['realSum_wd']) else ('weekdays only' if pd.isna(row['realSum_we'])
+    else 'any day'), axis=1)
 ```
 
 Зробимо агрегацію даних - подивимось скільки яких типів помешкань серед наших локацій:
@@ -136,6 +137,7 @@ fig.show()
 Середній кореляційний зв'язок у нас є між кількістю спалень і кількістю осіб, які можуть орендувати помешкання, а також між відстанню до центра та широтою, хоча це очевидно є випадковим збігом.  
 Між рештою показників кореляційний зв'язок слабкий.  
 Далі більш детально зупинимось на цінах в різних містах і подивимось на кореляцію між ціною в будні і різними факторами, а також між ціною в вихідні і різними факторами.  
+
 Почнемо з дослідження кореляції між ціною в будні і різними факторами:
 
 ```
