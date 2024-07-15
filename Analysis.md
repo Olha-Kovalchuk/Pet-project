@@ -111,7 +111,8 @@ cities_data
 Спочатку проаналізуємо кореляцію між різними факторами. Для цього виберемо, фактори, які будемо включати до нашого кореляційного аналізу і потім зробимо безпосередньо кореляційний аналіз:
 
 ```
-factors=['realSum_wd','person_capacity','cleanliness_rating','guest_satisfaction_overall','bedrooms','distance','metro_distance','lng','lat', 'realSum_we']
+factors=['realSum_wd','person_capacity','cleanliness_rating','guest_satisfaction_overall','bedrooms','distance',
+'metro_distance','lng','lat', 'realSum_we']
 correl = cities_data[factors].corr()
 ```
 
@@ -122,7 +123,8 @@ import seaborn as sns
 import plotly.express as px
 
 ```
-fig = px.imshow(correl, zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'], title="Correlation", width=1000, height=1000, text_auto ='.2f')
+fig = px.imshow(correl, zmin = -1, zmax = 1, color_continuous_scale = ['#DD0000','#FFFFFF','#0000DD'],
+title="Correlation", width=1000, height=1000, text_auto ='.2f')
 fig.show()
 ```
 
