@@ -149,6 +149,7 @@ fig.show()
 ```
 
 Отримаємо таку картинку:  
+
 ![Image alt](4_Correlation with Price by Cities on weekdays.png)
 
 
