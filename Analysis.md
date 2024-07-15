@@ -88,7 +88,7 @@ cities_data['biz_type'] = cities_data.apply(
     lambda row: 'multi' if row['multi'] == 1 else ('biz' if row['biz'] == 1 else 'one'), axis=1)
 
 cities_data['booking_days'] = cities_data.apply(    
-    lambda row: 'weekends only' if row['realSum_wd'] == 'NaN' else ('weekdays only' if row['realSum_we'] == 'NaN' else 'any day'), axis=1)
+    lambda row: 'weekends only' if pd.isna(row['realSum_wd']) else ('weekdays only' if pd.isna(row['realSum_we']) else 'any day'), axis=1)
 ```
 
 Зробимо агрегацію даних - подивимось скільки яких типів помешкань серед наших локацій:
@@ -152,13 +152,7 @@ fig.show()
 
 ![Image alt](4_Correlation_with_Price_by_Cities_on_weekdays.png)
 
-![Image alt](4_Coreelation with Price by Cities on weekdays.png)
+Корелція між ціною в вихідні і різними факторами виглядатиме наступним чином:
 
-
-
-
-![Image alt](5_Correlation with Price by Cities on weekends.png)
-
-
-
+![Image alt](5_Correlation_with_Price_by_Cities_on_weekends.png)
 
