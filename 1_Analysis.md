@@ -97,6 +97,11 @@ cities_data['booking_days'] = cities_data.apply(
 ```
 room_types = cities_data.groupby('room_type')['room_type'].count()
 ```
+room_type  
+Entire home/apt    21383  
+Private room       11708  
+Shared room          221  
+Name: room_type, dtype: int64  
 
 Як можна побачити, що стовпці  room_shared і  room_private по суті дублюють уже зазначену в room_type інформацію. Тому видаляємо ці стовпці з таблиці і виведемо таблицю, щоб побачити результат:
 
