@@ -97,6 +97,7 @@ cities_data['booking_days'] = cities_data.apply(
 ```
 room_types = cities_data.groupby('room_type')['room_type'].count()
 ```
+Отримаємо такі результати:  
 room_type  
 Entire home/apt    21383  
 Private room       11708  
