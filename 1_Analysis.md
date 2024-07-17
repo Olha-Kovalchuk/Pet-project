@@ -200,4 +200,7 @@ fig.show()
 
 ### **Візуалізація даних**  
 
+Детально подивитися і покомунікувати з візалізаціями можна за посиланням:  
+[Tableau](https://public.tableau.com/views/Airbnb_prices_analysis/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
 ### **Висновки та рекомендаціїї**  
